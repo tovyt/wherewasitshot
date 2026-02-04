@@ -1,4 +1,4 @@
-import { Pool } from "pg";
+import { Pool, type QueryResultRow } from "pg";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -28,7 +28,10 @@ export function getDbPool(): Pool | null {
   return global.__dbPool ?? null;
 }
 
-export async function queryDb<T = unknown>(text: string, params: unknown[] = []) {
+export async function queryDb<T extends QueryResultRow = QueryResultRow>(
+  text: string,
+  params: unknown[] = []
+) {
   const pool = getDbPool();
   if (!pool) {
     throw new Error("Database not configured. Set DATABASE_URL in .env.local.");
