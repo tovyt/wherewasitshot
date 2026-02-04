@@ -3,6 +3,8 @@
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 const STATUS_MESSAGES: Record<string, string> = {
   missing: "Missing login token. Please request a new login link.",
   invalid: "That login link is invalid or has already been used.",
